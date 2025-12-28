@@ -5,7 +5,7 @@ module hinge_example() {
 	full_close_hinge(
 		d=15, 
 		l=70, 
-		tol=0.375, 
+		tol=0.25, 
 		max_open_angle=90,
 		angle=0
 	);
