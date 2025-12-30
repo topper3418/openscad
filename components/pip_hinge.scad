@@ -2,7 +2,14 @@
 $fa = 1;
 $fs = 0.01;
 
-module hinge(d,l, tol, max_angle_1=45, max_angle_2=45, angle=0) {
+module hinge(
+	d,
+	l, 
+	tol, 
+	max_angle_1=45, 
+	max_angle_2=45, 
+	angle=0
+) {
 	// all values besides the angle must be positive
 	assert(d > 0, "Diameter must be positive");
 	assert(l > 0, "Length must be positive");
