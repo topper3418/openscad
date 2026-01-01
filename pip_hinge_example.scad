@@ -2,12 +2,12 @@ use <components/pip_hinge.scad>
 
 
 module hinge_example() {
-	full_close_hinge(
+	hinge(
 		d=15, 
 		l=70, 
 		tol=0.25, 
-		max_open_angle=90,
-		angle=0
+		max_angle_1=90,
+		angle=90
 	);
 }
 

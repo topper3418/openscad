@@ -1,6 +1,3 @@
-// res config
-$fa = 1;
-$fs = 0.01;
 
 module hinge(
 	d,
@@ -112,9 +109,8 @@ module hinge(
 			}
 		}
 	}
-	rotate([0, 0, angle/2])
-		hinge_side(odd=false);
-	rotate([0, 0, -angle/2])
+	hinge_side(odd=false);
+	rotate([0, 0, angle])
 		mirror([1, 0, 0])
 			hinge_side(odd=true);
 }

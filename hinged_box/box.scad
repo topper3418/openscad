@@ -1,4 +1,8 @@
-use <components/pip_hinge.scad>
+use <hinge_and_lid.scad>
+
+// res config
+$fa = 1;
+$fs = 0.05;
 
 module box(
     length=100, 
@@ -7,10 +11,10 @@ module box(
     wall_thickness=5,
     lid_angle=45, // 180 being open, 0 being closed
     hinge_angle=45,
-    tolerance=0.2
+    tolerance=0.3
 ) {
 
-    lid_length = length-2*wall_thickness -2*tolerance;
+    lid_length = length-2*(wall_thickness + tolerance);
     lid_width = width-2*wall_thickness -2*tolerance;
     
    module box_body() {
@@ -57,29 +61,21 @@ module box(
        }
    }
 
-   module lid_body() {
-     resize([lid_length, lid_width, wall_thickness])
-       cube();
-   }
-
-   module integral_hinge() {
-        translate([0, wall_thickness/2, 0])
-        rotate([0, 90, 0])
-        hinge(
-             d=wall_thickness,
-             l=lid_length,
-             tol=tolerance,
-             max_angle_1=lid_angle,
-             max_angle_2=hinge_angle,
-             angle=lid_angle+90
-         );
-   }
-
    box_body();
-   *translate([wall_thickness,wall_thickness,height - wall_thickness + tolerance])
-       lid_body();
-   translate([wall_thickness+tolerance, 0, height-wall_thickness/2])
-       integral_hinge();
+   // move up into the hinge cutout
+   translate([wall_thickness+tolerance, wall_thickness/2, height - (wall_thickness/2)])
+   lid(
+       length=length, 
+       width=width, 
+       wall_thickness=wall_thickness,
+       lid_angle=lid_angle
+   );
 }
 
-box(height=60, length=120, width=80, wall_thickness=4, lid_angle=180);
+box(
+    height=30, 
+    length=60, 
+    width=40, 
+    wall_thickness=3, 
+    lid_angle=180
+);
