@@ -1,3 +1,4 @@
+use <../helpers/units.scad>
 // this will be a basic box with a sliding lid
 module basic_box(
     length=100,
@@ -44,10 +45,10 @@ module basic_box(
             cube();
         }
         module pull_tab() {
-            tab_length = length/5;
+            tab_length = length/2;
             tab_width = wall_thickness * 2;
             translate([
-                length/2 - tab_length/2,
+                lid_length/2 - tab_length/2,
                 wall_thickness,
                 lid_height * 1.75 - slide_tolerance + 0.01,
             ])
@@ -114,7 +115,7 @@ module basic_box(
     }
 
     module translate_lid_for_print() {
-        translate([0, -width * 1.5, 0])
+        translate([0, -width*1.125, 0])
         children();
     }
     
@@ -127,4 +128,12 @@ module basic_box(
             lid_body();
 }
 
-basic_box(print_mode=false);
+basic_box(
+    length=inches(7.5),
+    width=inches(3.5),
+    height=inches(2.5),
+    wall_thickness=2,
+    slide_tolerance=0.15,
+    print_mode=true
+);
+
