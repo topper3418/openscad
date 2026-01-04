@@ -10,19 +10,24 @@ use <pass_through.scad>
 use <screw_hole_standoff.scad>
 use <base_plate.scad>
 use <battery_case.scad>
+use <translate_base.scad>
 
-$fn=50;
-$fa=0.1;
+include <../params.scad>
+include <base_params.scad>
+
+$fn = 50;
+$fa = 0.1;
 
 module remote_base() {
+  translate_base()
     union() {
-	base_plate();
-	pass_through_array();
-	offset_screw_hole_standoff_array()
-		screw_hole_standoff_array();
-	offset_battery_case()
-		battery_case();
-	}
+      base_plate();
+      pass_through_array();
+      offset_screw_hole_standoff_array()
+        screw_hole_standoff_array();
+      offset_battery_case()
+        battery_case();
+    }
 }
 
 remote_base();

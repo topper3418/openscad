@@ -2,22 +2,34 @@ use <screw_hole_standoff.scad>
 use <pass_through.scad>
 use <battery_case.scad>
 
-base_thickness = 2;
-base_width = 65;
-base_height = 125;
-base_plate_offset_y = -45;
+include <base_params.scad>
+include <../params.scad>
 
-radio_pass_through_offset_x = -12;
-radio_pass_through_offset_y = -5;
-radio_pass_through_diameter = 10;
+radio_pass_through_offset_x = -11;
+radio_pass_through_offset_y = -8;
+radio_pass_through_diameter = 12;
 
-dip_switch_pass_through_width = 21;
-dip_switch_pass_through_height = 9;
-dip_switch_pass_through_offset_x = 7;
-dip_switch_pass_through_offset_y = -5;
+dip_switch_pass_through_width = 13;
+dip_switch_pass_through_height = 10;
+dip_switch_pass_through_offset_x = 9;
+dip_switch_pass_through_offset_y = -7;
+
+module side_rail() {
+  translate([base_width / 2, 0, 0])
+    translate([-base_thickness / 2, 0, base_thickness / 2])
+      resize([base_thickness, base_length, base_thickness])
+        rotate([0, 45, 0])
+          cube();
+}
 
 module radio_pass_through_cutout() {
-  translate([radio_pass_through_offset_x, radio_pass_through_offset_y, -0.1])
+  translate(
+    [
+      radio_pass_through_offset_x,
+      radio_pass_through_offset_y,
+      -0.1,
+    ]
+  )
     cylinder(
       h=base_thickness + 0.2,
       r=radio_pass_through_diameter / 2 + 0.1
@@ -45,7 +57,7 @@ module base_plate() {
   difference() {
     // main base plate
     translate([-base_width / 2, base_plate_offset_y, 0])
-      cube([base_width, base_height, base_thickness]);
+      cube([base_width, base_length, base_thickness]);
 
     // cutouts for pass throughs
     pass_through_cutout_array();
@@ -64,4 +76,11 @@ module base_plate() {
     // cutout for the dip switch pass through
     dip_switch_cutout();
   }
+  // rails for sliding into case
+  translate([0, base_plate_offset_y, 0])
+    union() {
+      side_rail();
+      mirror([1, 0, 0])
+        side_rail();
+    }
 }
