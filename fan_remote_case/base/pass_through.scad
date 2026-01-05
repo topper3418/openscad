@@ -34,11 +34,11 @@ module pattern_for_pass_through_array() {
   translate([-array_width / 2, 0, 0])
     union() {
       children();
-      translate([array_width - 4.5 + 1.5, 0, 0])
+      translate([array_width - 4.5 + 1.5 + 1.5 - .5 + 0.25, 0, 0])
         children();
-      translate([0, array_height + 1.16 - 1.5, 0])
+      translate([0 + 1.5 - 2.7, array_height + 1.16 - 1.5, 0])
         children();
-      translate([array_width, array_height - 1, 0])
+      translate([array_width - 1.6 + 0.5, array_height - 1 + .75, 0])
         children();
     }
 }

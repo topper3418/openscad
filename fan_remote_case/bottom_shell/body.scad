@@ -7,13 +7,15 @@ use <top_wall_knockout.scad>
 use <base_cutout.scad>
 use <battery_cover.scad>
 use <sliding_shell.scad>
+use <../base/base_plate_features.scad>
 
 module bottom_shell_1() {
   difference() {
     sliding_shell(bottom_shell_1_length);
     translate([case_width / 2, 0, 0])
       battery_cover_cutout();
-    pass_through_cutout_array_bottom_shell();
+    translate_base_plate_features()
+      pass_through_cutout_array_bottom_shell();
   }
 }
 
@@ -28,6 +30,7 @@ module bottom_shell_2() {
     )
       rotate([0, 0, 180])
         sliding_shell(bottom_shell_2_length);
-    pass_through_cutout_array_bottom_shell();
+    translate_base_plate_features()
+      pass_through_cutout_array_bottom_shell();
   }
 }

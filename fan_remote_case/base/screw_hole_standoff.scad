@@ -1,11 +1,11 @@
 use <../../components/ring.scad>
 
-screw_hole_standoff_height = 7 - 1.5;
+screw_hole_standoff_height = 7 - 1.5 + 1;
 screw_hole_standoff_outer_radius = 4 / 2;
 screw_hole_standoff_inner_radius = 2 / 2;
 array_width = 43;
-array_height = 34;
-screw_hole_standoff_offset_y = 33;
+array_height = 34 - .5;
+screw_hole_standoff_offset_y = 33 + .5;
 base_thickness = 1;
 
 module base_plug() {
@@ -55,6 +55,6 @@ module screw_hole_cutout_array() {
 }
 
 module offset_screw_hole_standoff_array() {
-  translate([0, screw_hole_standoff_offset_y, 0])
+  translate([-1.5 + 0.84, screw_hole_standoff_offset_y, 0])
     children();
 }

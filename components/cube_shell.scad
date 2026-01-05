@@ -2,7 +2,7 @@ module cube_shell(
   size = [10, 10, 10],
   wall_thickness = 1
 ) {
-  !difference() {
+  difference() {
     resize(size)
       cube();
     translate([wall_thickness, wall_thickness, wall_thickness])
