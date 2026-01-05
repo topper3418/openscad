@@ -1,7 +1,7 @@
 single_piece_base = true;
 base_thickness = 1.5;
 base_width = 55;
-base_length = 115 - 7;
+base_length = 115 - 7 + 2;
 
 case_thickness = 2.4;
 case_base_height = 6;
@@ -25,5 +25,8 @@ clicker_diameter = 44;
 clicker_offset_y = 83.5;
 
 base_assembly_offset_z = let (
-  tolerance_value = case_base_tolerance < 0 ? 0 : case_base_tolerance
+  tolerance_value = case_base_tolerance < 0 ? -0.1 : case_base_tolerance
 ) case_thickness + tolerance_value;
+
+top_chamfer_size = 10;
+bottom_chamfer_size = 8;

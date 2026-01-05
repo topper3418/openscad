@@ -4,6 +4,7 @@ use <../base/pass_through.scad>
 include <../translate_base_to_position.scad>
 include <../base/translate_base.scad>
 use <../base/base_plate_features.scad>
+use <../chamfers.scad>
 
 angle_1 = 79;
 angle_2 = 88;
@@ -64,10 +65,12 @@ module outer_cube() {
 }
 
 module top_shell_outer() {
-  difference() {
-    outer_cube();
-    cutting_hat();
-  }
+  if (single_piece_base)
+    cut_off_chamfers(height=case_top_height)
+      difference() {
+        outer_cube();
+        cutting_hat();
+      }
 }
 
 module clicker_cutout() {
