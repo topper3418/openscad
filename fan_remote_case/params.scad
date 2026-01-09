@@ -6,6 +6,7 @@ base_length = 115 - 7 + 2;
 case_thickness = 2.4;
 case_base_height = 6;
 case_top_height = 17;
+case_height = case_base_height + case_top_height;
 
 case_base_tolerance =
   single_piece_base ? -0.1
@@ -30,3 +31,6 @@ base_assembly_offset_z = let (
 
 top_chamfer_size = 10;
 bottom_chamfer_size = 8;
+
+wall_mount_thickness = 3.5;
+wall_mount_tolerance = 1;

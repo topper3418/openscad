@@ -50,3 +50,10 @@ module bottom_shell() {
       pass_through_cutout_array_bottom_shell();
   }
 }
+
+// blank for making a solid version as a building block
+module bottom_shell_blank() {
+  outer_dimensions = [case_width, case_length, case_base_height];
+  cut_off_chamfers(case_base_height)
+    cube(outer_dimensions);
+}

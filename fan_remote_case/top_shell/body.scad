@@ -8,10 +8,10 @@ use <../chamfers.scad>
 
 angle_1 = 79;
 angle_2 = 88;
-angle_3 = 78;
-angle_4 = 60;
+angle_3 = 76;
+angle_4 = 55;
 side_offset = 4;
-peak_offset_y = case_length * 0.5 + 3;
+peak_offset_y = case_length * 0.5 + 3 + 1;
 
 filler_offset_z = 10;
 filler_offset_y = 27.5;
@@ -57,6 +57,9 @@ module cutting_hat() {
     side_rectangles();
   translate([case_width / 2, 0, case_top_height - 3])
     side_rectangles(angle_4, 21);
+  translate([0, 0, 12])
+    rotate([15, 0, 0])
+      outer_cube();
 }
 
 module outer_cube() {
